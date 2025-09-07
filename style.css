@@ -930,7 +930,9 @@ section {
     
     /* Logo文字大小调整 */
     .nav-logo a {
-        font-size: 1.2rem;
+        font-size: 0.9rem;
+        line-height: 1.1;
+        white-space: nowrap;
     }
     
     /* 主题切换按钮和汉堡菜单间距 */
