@@ -923,8 +923,24 @@ section {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+    /* 导航栏布局调整 */
+    .nav-container {
+        gap: 1rem;
+    }
+    
+    /* Logo文字大小调整 */
+    .nav-logo a {
+        font-size: 1.2rem;
+    }
+    
+    /* 主题切换按钮和汉堡菜单间距 */
+    .theme-toggle {
+        margin-right: 1rem;
+    }
+    
     .hamburger {
         display: flex;
+        margin-left: 0.5rem;
     }
     
     .nav-menu {
@@ -932,16 +948,30 @@ section {
         left: -100%;
         top: 70px;
         flex-direction: column;
-        background-color: white;
+        background: var(--card-bg);
         width: 100%;
         text-align: center;
         transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 27px var(--card-shadow);
         padding: 2rem 0;
+        z-index: 1000;
     }
     
     .nav-menu.active {
         left: 0;
+    }
+    
+    /* 移动端导航链接样式 */
+    .nav-link {
+        color: var(--text-primary) !important;
+        padding: 1rem 0;
+        display: block;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .nav-link:hover {
+        color: var(--accent-color) !important;
+        background: var(--bg-secondary);
     }
     
     .hero-content {
