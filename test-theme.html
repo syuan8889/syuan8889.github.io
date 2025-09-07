@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主题切换测试</title>
+    <style>
+        /* CSS变量定义 */
+        :root {
+            /* 白天主题 */
+            --bg-primary: #ffffff;
+            --text-primary: #333333;
+            --accent-color: #4f46e5;
+        }
+
+        /* 黑夜主题 */
+        [data-theme='dark'] {
+            --bg-primary: #1a1a1a;
+            --text-primary: #ffffff;
+            --accent-color: #6366f1;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            padding: 20px;
+        }
+
+        .theme-btn {
+            background: var(--bg-primary);
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+
+        .theme-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .test-content {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>主题切换测试页面</h1>
+    
+    <button id="themeToggle" class="theme-btn" title="Toggle theme">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <div class="test-content">
+        <h2>测试内容</h2>
+        <p>这是一个测试页面，用来验证主题切换功能是否正常工作。</p>
+        <p>点击上方的月亮/太阳图标来切换主题。</p>
+    </div>
+
+    <script>
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            
+            // 从localStorage获取保存的主题，默认为light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            
+            // 应用保存的主题
+            body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+            
+            // 点击切换主题
+            themeToggle.addEventListener('click', function() {
+                console.log('Theme toggle clicked!');
+                
+                const currentTheme = body.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                console.log('Current theme:', currentTheme);
+                console.log('New theme:', newTheme);
+                
+                // 更新主题
+                body.setAttribute('data-theme', newTheme);
+                
+                // 保存到localStorage
+                localStorage.setItem('theme', newTheme);
+                
+                // 更新图标
+                updateThemeIcon(newTheme);
+                
+                console.log('Theme updated to:', body.getAttribute('data-theme'));
+            });
+        }
+
+        function updateThemeIcon(theme) {
+            const themeToggle = document.getElementById('themeToggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (theme === 'light') {
+                icon.className = 'fas fa-moon';
+                themeToggle.title = 'Switch to dark theme';
+            } else {
+                icon.className = 'fas fa-sun';
+                themeToggle.title = 'Switch to light theme';
+            }
+        }
+
+        // 页面加载完成后初始化主题切换
+        document.addEventListener('DOMContentLoaded', initThemeToggle);
+    </script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</body>
+</html>

@@ -370,3 +370,58 @@ function initImageModal() {
 
 // 页面加载完成后初始化图片模态框
 document.addEventListener('DOMContentLoaded', initImageModal);
+
+// 主题切换功能
+function initThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    
+    // 从localStorage获取保存的主题，默认为light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
+    // 应用保存的主题
+    body.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+    
+    // 点击切换主题
+    themeToggle.addEventListener('click', function() {
+        console.log('Theme toggle clicked!'); // 调试信息
+        
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        console.log('Current theme:', currentTheme); // 调试信息
+        console.log('New theme:', newTheme); // 调试信息
+        
+        // 更新主题
+        body.setAttribute('data-theme', newTheme);
+        
+        // 保存到localStorage
+        localStorage.setItem('theme', newTheme);
+        
+        // 更新图标
+        updateThemeIcon(newTheme);
+        
+        // 添加切换动画
+        body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+        
+        console.log('Theme updated to:', body.getAttribute('data-theme')); // 调试信息
+    });
+}
+
+// 更新主题图标
+function updateThemeIcon(theme) {
+    const themeToggle = document.getElementById('themeToggle');
+    const icon = themeToggle.querySelector('i');
+    
+    if (theme === 'light') {
+        icon.className = 'fas fa-moon';
+        themeToggle.title = 'Switch to dark theme';
+    } else {
+        icon.className = 'fas fa-sun';
+        themeToggle.title = 'Switch to light theme';
+    }
+}
+
+// 页面加载完成后初始化主题切换
+document.addEventListener('DOMContentLoaded', initThemeToggle);

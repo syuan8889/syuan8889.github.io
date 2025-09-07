@@ -1,0 +1,166 @@
+/* 主题预设方案 - 复制到 style.css 中使用 */
+
+/* ===========================================
+   蓝色主题 (Blue Theme)
+   =========================================== */
+.blue-theme {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f0f9ff;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --accent-color: #3b82f6;
+    --accent-hover: #2563eb;
+    --card-bg: #ffffff;
+    --card-shadow: rgba(59, 130, 246, 0.1);
+    --border-color: #e2e8f0;
+    --navbar-bg: rgba(255, 255, 255, 0.95);
+    --hero-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.blue-theme[data-theme='dark'] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --accent-color: #60a5fa;
+    --accent-hover: #3b82f6;
+    --card-bg: #1e293b;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --border-color: #334155;
+    --navbar-bg: rgba(15, 23, 42, 0.95);
+    --hero-gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+/* ===========================================
+   绿色主题 (Green Theme)
+   =========================================== */
+.green-theme {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f0fdf4;
+    --text-primary: #14532d;
+    --text-secondary: #166534;
+    --text-muted: #16a34a;
+    --accent-color: #10b981;
+    --accent-hover: #059669;
+    --card-bg: #ffffff;
+    --card-shadow: rgba(16, 185, 129, 0.1);
+    --border-color: #d1fae5;
+    --navbar-bg: rgba(255, 255, 255, 0.95);
+    --hero-gradient: linear-gradient(135deg, #10b981 0%, #047857 100%);
+}
+
+.green-theme[data-theme='dark'] {
+    --bg-primary: #064e3b;
+    --bg-secondary: #065f46;
+    --text-primary: #ecfdf5;
+    --text-secondary: #a7f3d0;
+    --text-muted: #6ee7b7;
+    --accent-color: #34d399;
+    --accent-hover: #10b981;
+    --card-bg: #065f46;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --border-color: #047857;
+    --navbar-bg: rgba(6, 78, 59, 0.95);
+    --hero-gradient: linear-gradient(135deg, #065f46 0%, #064e3b 100%);
+}
+
+/* ===========================================
+   紫色主题 (Purple Theme)
+   =========================================== */
+.purple-theme {
+    --bg-primary: #ffffff;
+    --bg-secondary: #faf5ff;
+    --text-primary: #581c87;
+    --text-secondary: #7c3aed;
+    --text-muted: #a855f7;
+    --accent-color: #8b5cf6;
+    --accent-hover: #7c3aed;
+    --card-bg: #ffffff;
+    --card-shadow: rgba(139, 92, 246, 0.1);
+    --border-color: #e9d5ff;
+    --navbar-bg: rgba(255, 255, 255, 0.95);
+    --hero-gradient: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+}
+
+.purple-theme[data-theme='dark'] {
+    --bg-primary: #2e1065;
+    --bg-secondary: #4c1d95;
+    --text-primary: #f3e8ff;
+    --text-secondary: #c4b5fd;
+    --text-muted: #a78bfa;
+    --accent-color: #a78bfa;
+    --accent-hover: #8b5cf6;
+    --card-bg: #4c1d95;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --border-color: #6b21a8;
+    --navbar-bg: rgba(46, 16, 101, 0.95);
+    --hero-gradient: linear-gradient(135deg, #4c1d95 0%, #2e1065 100%);
+}
+
+/* ===========================================
+   红色主题 (Red Theme)
+   =========================================== */
+.red-theme {
+    --bg-primary: #ffffff;
+    --bg-secondary: #fef2f2;
+    --text-primary: #991b1b;
+    --text-secondary: #dc2626;
+    --text-muted: #ef4444;
+    --accent-color: #ef4444;
+    --accent-hover: #dc2626;
+    --card-bg: #ffffff;
+    --card-shadow: rgba(239, 68, 68, 0.1);
+    --border-color: #fecaca;
+    --navbar-bg: rgba(255, 255, 255, 0.95);
+    --hero-gradient: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+}
+
+.red-theme[data-theme='dark'] {
+    --bg-primary: #7f1d1d;
+    --bg-secondary: #991b1b;
+    --text-primary: #fef2f2;
+    --text-secondary: #fca5a5;
+    --text-muted: #f87171;
+    --accent-color: #f87171;
+    --accent-hover: #ef4444;
+    --card-bg: #991b1b;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --border-color: #dc2626;
+    --navbar-bg: rgba(127, 29, 29, 0.95);
+    --hero-gradient: linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%);
+}
+
+/* ===========================================
+   橙色主题 (Orange Theme)
+   =========================================== */
+.orange-theme {
+    --bg-primary: #ffffff;
+    --bg-secondary: #fff7ed;
+    --text-primary: #9a3412;
+    --text-secondary: #ea580c;
+    --text-muted: #f97316;
+    --accent-color: #f97316;
+    --accent-hover: #ea580c;
+    --card-bg: #ffffff;
+    --card-shadow: rgba(249, 115, 22, 0.1);
+    --border-color: #fed7aa;
+    --navbar-bg: rgba(255, 255, 255, 0.95);
+    --hero-gradient: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+.orange-theme[data-theme='dark'] {
+    --bg-primary: #7c2d12;
+    --bg-secondary: #9a3412;
+    --text-primary: #fff7ed;
+    --text-secondary: #fed7aa;
+    --text-muted: #fdba74;
+    --accent-color: #fdba74;
+    --accent-hover: #f97316;
+    --card-bg: #9a3412;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --border-color: #ea580c;
+    --navbar-bg: rgba(124, 45, 18, 0.95);
+    --hero-gradient: linear-gradient(135deg, #9a3412 0%, #7c2d12 100%);
+}

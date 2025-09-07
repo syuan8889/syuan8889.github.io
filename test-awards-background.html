@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awards & Services 背景测试</title>
+    <style>
+        /* CSS变量定义 */
+        :root {
+            /* 白天主题 */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-muted: #888888;
+            --accent-color: #4f46e5;
+            --accent-hover: #4338ca;
+            --card-bg: #ffffff;
+            --card-shadow: rgba(0, 0, 0, 0.1);
+            --border-color: #e2e8f0;
+            --navbar-bg: rgba(255, 255, 255, 0.95);
+            --hero-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* 黑夜主题 */
+        [data-theme='dark'] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-color: #6366f1;
+            --accent-hover: #5b5bd6;
+            --card-bg: #2d2d2d;
+            --card-shadow: rgba(0, 0, 0, 0.3);
+            --border-color: #404040;
+            --navbar-bg: rgba(26, 26, 26, 0.95);
+            --hero-gradient: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            text-align: center;
+        }
+
+        .theme-toggle {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+        }
+
+        .theme-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* 测试Awards & Services背景 */
+        .awards_services {
+            background: var(--bg-secondary) !important;
+            padding: 40px 0;
+            margin: 20px 0;
+            border-radius: 12px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .test-content {
+            text-align: center;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            margin: 20px;
+            box-shadow: 0 4px 6px var(--card-shadow);
+        }
+
+        .test-content h3 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .test-content p {
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏆 Awards & Services 背景测试</h1>
+        
+        <div class="theme-toggle">
+            <button id="themeToggle" class="theme-btn" title="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+        <section class="awards_services">
+            <div class="container">
+                <h2 class="section-title">Awards & Services</h2>
+                <div class="test-content">
+                    <h3>测试内容</h3>
+                    <p>这个section的背景应该会根据主题变化：</p>
+                    <p>• 白天主题：浅灰色背景 (#f8fafc)</p>
+                    <p>• 深色主题：深灰色背景 (#2d2d2d)</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="test-content">
+            <h3>对比测试</h3>
+            <p>这是普通内容区域，背景是主背景色，用来对比Awards & Services部分的背景变化。</p>
+        </div>
+    </div>
+
+    <script>
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            
+            // 从localStorage获取保存的主题，默认为light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            
+            // 应用保存的主题
+            body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+            
+            // 点击切换主题
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = body.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                // 更新主题
+                body.setAttribute('data-theme', newTheme);
+                
+                // 保存到localStorage
+                localStorage.setItem('theme', newTheme);
+                
+                // 更新图标
+                updateThemeIcon(newTheme);
+            });
+        }
+
+        function updateThemeIcon(theme) {
+            const themeToggle = document.getElementById('themeToggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (theme === 'light') {
+                icon.className = 'fas fa-moon';
+                themeToggle.title = 'Switch to dark theme';
+            } else {
+                icon.className = 'fas fa-sun';
+                themeToggle.title = 'Switch to light theme';
+            }
+        }
+
+        // 页面加载完成后初始化主题切换
+        document.addEventListener('DOMContentLoaded', initThemeToggle);
+    </script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</body>
+</html>

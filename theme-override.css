@@ -1,0 +1,208 @@
+/* 主题覆盖样式 - 确保主题切换正常工作 */
+
+/* 基础元素使用CSS变量 */
+body {
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* 导航栏使用CSS变量 */
+.navbar {
+    background: var(--navbar-bg) !important;
+}
+
+.nav-link {
+    color: var(--text-primary) !important;
+}
+
+.nav-link:hover {
+    color: var(--accent-color) !important;
+}
+
+.about-link a {
+    color: var(--accent-color) !important;
+}
+
+.about-link a:hover {
+    color: #ffffff;
+    background-color: var(--accent-hover) !important;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+
+/* 首页背景使用CSS变量 */
+.hero {
+    background: var(--hero-gradient) !important;
+}
+
+/* 部分背景使用CSS变量 */
+.about,
+.publications,
+.news,
+.contact,
+.awards_services {
+    background: var(--bg-secondary) !important;
+}
+
+/* 卡片背景使用CSS变量 */
+.stat-item,
+.research-card,
+.publication-item,
+.award-item,
+.service-item,
+.news-content {
+    background: var(--card-bg) !important;
+    box-shadow: 0 4px 6px var(--card-shadow) !important;
+}
+
+/* 文字颜色使用CSS变量 */
+.section-title,
+.hero-title,
+.hero-subtitle,
+.hero-description,
+.about-text p,
+.research-card h3,
+.publication-content h3,
+.award-content h4,
+.service-content h4,
+.news-content h3,
+.contact-item h3 {
+    color: var(--text-primary) !important;
+}
+
+.about-text p,
+.research-card p,
+.publication-authors,
+.publication-venue,
+.award-content p,
+.service-content p,
+.news-content p,
+.contact-item p {
+    color: var(--text-secondary) !important;
+}
+
+/* 强调色使用CSS变量 */
+.nav-logo a,
+.stat-item h3,
+.publication-year,
+.award-year,
+.service-year,
+.date-day,
+.news-tag,
+.publication-link,
+.project-link {
+    color: var(--accent-color) !important;
+}
+
+/* 统计项目背景和文字颜色 */
+.stat-item {
+    background: var(--card-bg) !important;
+    box-shadow: 0 4px 6px var(--card-shadow) !important;
+}
+
+.stat-item p {
+    color: var(--text-secondary) !important;
+}
+
+/* 导航logo颜色 */
+.nav-logo a {
+    color: var(--accent-color) !important;
+}
+
+/* 社交媒体链接颜色 */
+.social-link {
+    background: var(--accent-color) !important;
+    color: white !important;
+}
+
+.social-link:hover {
+    background: var(--accent-hover) !important;
+}
+
+/* 点击联系方式样式 */
+.social-links .clickable-contact {
+    background: var(--accent-color) !important;
+    color: white !important;
+}
+
+.social-links .clickable-contact:hover {
+    background: var(--accent-hover) !important;
+}
+
+.social-links .clickable-contact.revealed {
+    background: var(--accent-color) !important;
+    color: white !important;
+}
+
+.social-links .clickable-contact.revealed:hover {
+    background: var(--accent-hover) !important;
+}
+
+/* 子标题使用CSS变量 */
+.subsection-title {
+    color: var(--text-primary) !important;
+}
+
+.subsection-title i {
+    color: var(--accent-color) !important;
+}
+
+/* 日期文字使用CSS变量 */
+.date-month {
+    color: var(--text-secondary) !important;
+}
+
+.date-year {
+    color: var(--text-muted) !important;
+}
+
+/* 按钮使用CSS变量 */
+.btn-primary {
+    background: transparent;
+    color: white;
+    border: 4px solid white;
+}
+
+.btn-primary:hover {
+    background: white;
+    color: #4f46e5;
+}
+
+.news-tag {
+    color: var(--accent-color) !important;
+    background: var(--card-bg) !important;
+    border: 2px solid var(--text-primary) !important;
+    box-shadow: 0 4px 6px var(--card-shadow) !important;
+}
+
+
+
+/* 页脚使用CSS变量 */
+.footer {
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* 日期背景使用CSS变量 */
+.award-year,
+.service-year,
+.news-date {
+    background: var(--card-bg) !important;
+    box-shadow: 0 4px 6px var(--card-shadow) !important;
+    color: var(--accent-color) !important;
+}
+
+/* 主题切换按钮使用CSS变量 */
+.theme-btn {
+    background: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+.theme-btn:hover {
+    background: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+    color: white !important;
+}
