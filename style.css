@@ -242,6 +242,10 @@ section {
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
 }
+.about-link {
+    text-align: justify;
+    text-justify: inter-word;
+}
 
 .about-stats {
     display: flex;
@@ -667,7 +671,10 @@ section {
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    text-align: justify;
+    text-justify: inter-word;
 }
+
 
 .news-content:hover {
     transform: translateY(-2px);
