@@ -1,4 +1,4 @@
-// 移动端导航菜单切换
+// 移动端导航菜单切�?
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
@@ -27,7 +27,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// 导航栏滚动效果
+// 导航栏滚动效�?
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
@@ -48,7 +48,7 @@ window.addEventListener('load', () => {
     }, 100);
 });
 
-// 滚动时显示元素动画
+// 滚动时显示元素动�?
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 添加页面滚动进度条
+// 添加页面滚动进度�?
 function createScrollProgress() {
     const progressBar = document.createElement('div');
     progressBar.style.cssText = `
@@ -220,10 +220,10 @@ function createBackToTop() {
     });
 }
 
-// 页面加载完成后创建返回顶部按钮
+// 页面加载完成后创建返回顶部按�?
 document.addEventListener('DOMContentLoaded', createBackToTop);
 
-// 可点击联系方式功能
+// 可点击联系方式功�?
 function initClickableContacts() {
     const clickableContacts = document.querySelectorAll('.clickable-contact');
     
@@ -285,8 +285,7 @@ function fallbackCopyToClipboard(text, element) {
 
 // 显示复制提示
 function showCopyTooltip(element, message) {
-    // 移除现有的提示
-    hideCopyTooltip(element);
+    // 移除现有的提�?    hideCopyTooltip(element);
     
     const tooltip = document.createElement('div');
     tooltip.className = 'copy-tooltip';
@@ -318,7 +317,7 @@ function hideCopyTooltip(element) {
     }
 }
 
-// 页面加载完成后初始化可点击联系方式
+// 页面加载完成后初始化可点击联系方�?
 document.addEventListener('DOMContentLoaded', initClickableContacts);
 
 // 图片全屏显示功能
@@ -360,8 +359,8 @@ function initImageModal() {
         }
     });
     
-    // ESC键关闭
-    document.addEventListener('keydown', function(e) {
+    // ESC键关�?    
+document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.style.display === 'block') {
             closeModal();
         }
@@ -379,8 +378,8 @@ function initThemeToggle() {
     // 从localStorage获取保存的主题，默认为light
     const savedTheme = localStorage.getItem('theme') || 'light';
     
-    // 应用保存的主题
-    body.setAttribute('data-theme', savedTheme);
+    // 应用保存的主�?    
+body.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
     
     // 点击切换主题
@@ -425,3 +424,234 @@ function updateThemeIcon(theme) {
 
 // 页面加载完成后初始化主题切换
 document.addEventListener('DOMContentLoaded', initThemeToggle);
+
+// Visitor statistics through Cloudflare Workers + D1.
+// After deploying the Worker, paste its public URL into workerApiUrl.
+const VISITOR_STATS_CONFIG = {
+    workerApiUrl: 'https://syuan8889-visitor-stats.syuan8889.workers.dev',
+    siteKey: 'syuan8889-homepage'
+};
+
+const WORLD_MAP_NAME_OVERRIDES = {
+    'United States': 'United States of America',
+    'Russian Federation': 'Russia',
+    Czechia: 'Czech Rep.',
+    'South Korea': 'Korea',
+    'North Korea': 'Dem. Rep. Korea',
+    Laos: 'Lao PDR',
+    Vietnam: 'Vietnam',
+    Iran: 'Iran',
+    Syria: 'Syria',
+    Tanzania: 'Tanzania',
+    'Democratic Republic of the Congo': 'Dem. Rep. Congo',
+    Congo: 'Congo',
+    'Central African Republic': 'Central African Rep.',
+    'South Sudan': 'S. Sudan',
+    'Bosnia and Herzegovina': 'Bosnia and Herz.',
+    'Dominican Republic': 'Dominican Rep.',
+    'Equatorial Guinea': 'Eq. Guinea',
+    'Solomon Islands': 'Solomon Is.',
+    'Falkland Islands': 'Falkland Is.',
+    'Ivory Coast': "Cote d'Ivoire"
+};
+
+function isVisitorWorkerConfigured() {
+    return Boolean(VISITOR_STATS_CONFIG.workerApiUrl);
+}
+
+function setText(id, value) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.textContent = value;
+    }
+}
+
+function formatNumber(value) {
+    const number = Number(value) || 0;
+    return number.toLocaleString();
+}
+
+function normalizeWorldMapName(countryName, countryCode) {
+    if (countryCode === 'CN') {
+        return 'China';
+    }
+    return WORLD_MAP_NAME_OVERRIDES[countryName] || countryName || 'Unknown';
+}
+
+async function getLocalVisitorPreview() {
+    const response = await fetch('https://ipapi.co/json/');
+    if (!response.ok) {
+        throw new Error('IP lookup failed');
+    }
+
+    const location = await response.json();
+    const visits = Number(localStorage.getItem('localVisitCount') || '0') + 1;
+    localStorage.setItem('localVisitCount', String(visits));
+
+    const countryCode = location.country_code || location.country || 'UNKNOWN';
+    const countryName = location.country_name || 'Unknown';
+    const regionName = location.region || '';
+
+    return {
+        totalVisits: visits,
+        uniqueVisitors: 1,
+        visitor: {
+            ip: location.ip || 'Unknown IP',
+            city: location.city || '',
+            region: regionName,
+            provinceName: countryCode === 'CN' ? regionName : '',
+            countryCode,
+            countryName
+        },
+        regions: [{
+            countryCode,
+            countryName,
+            worldMapName: normalizeWorldMapName(countryName, countryCode),
+            provinceName: countryCode === 'CN' ? regionName : '',
+            count: visits
+        }]
+    };
+}
+
+async function fetchWorkerVisitorStats() {
+    const endpoint = new URL(VISITOR_STATS_CONFIG.workerApiUrl);
+    endpoint.searchParams.set('siteKey', VISITOR_STATS_CONFIG.siteKey);
+
+    const response = await fetch(endpoint.toString(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ siteKey: VISITOR_STATS_CONFIG.siteKey })
+    });
+
+    if (!response.ok) {
+        throw new Error(`Visitor worker failed: ${response.status}`);
+    }
+
+    return response.json();
+}
+
+function renderVisitorMaps(regions) {
+    if (!window.echarts) {
+        setText('visitorMapStatus', 'Map library unavailable');
+        return;
+    }
+
+    const worldElement = document.getElementById('worldVisitorMap');
+    const chinaElement = document.getElementById('chinaVisitorMap');
+    if (!worldElement || !chinaElement) {
+        return;
+    }
+
+    const worldData = regions.reduce((items, region) => {
+        const mapName = normalizeWorldMapName(region.countryName, region.countryCode);
+        const existing = items.find(item => item.name === mapName);
+        if (existing) {
+            existing.value += region.count;
+        } else {
+            items.push({ name: mapName, value: region.count });
+        }
+        return items;
+    }, []);
+
+    const chinaData = regions
+        .filter(region => region.countryCode === 'CN' && region.provinceName)
+        .map(region => ({ name: region.provinceName, value: region.count }));
+
+    const maxValue = Math.max(1, ...regions.map(region => Number(region.count) || 0));
+    const mapThemeText = getComputedStyle(document.body).getPropertyValue('--text-secondary').trim() || '#666';
+    const accentColor = getComputedStyle(document.body).getPropertyValue('--accent-color').trim() || '#4f46e5';
+
+    try {
+        const worldChart = echarts.init(worldElement);
+        worldChart.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}' },
+            visualMap: {
+                min: 0,
+                max: maxValue,
+                left: 10,
+                bottom: 10,
+                text: ['High', 'Low'],
+                calculable: true,
+                inRange: { color: ['#dbeafe', '#60a5fa', '#4f46e5'] },
+                textStyle: { color: mapThemeText }
+            },
+            series: [{
+                name: 'Visitors',
+                type: 'map',
+                map: 'world',
+                roam: true,
+                emphasis: { label: { show: false } },
+                itemStyle: { borderColor: '#ffffff', borderWidth: 0.5 },
+                data: worldData
+            }]
+        });
+
+        const chinaChart = echarts.init(chinaElement);
+        chinaChart.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}' },
+            visualMap: {
+                min: 0,
+                max: maxValue,
+                left: 0,
+                bottom: 0,
+                show: chinaData.length > 0,
+                inRange: { color: ['#ecfeff', '#67e8f9', accentColor] },
+                textStyle: { color: mapThemeText }
+            },
+            series: [{
+                name: 'China Visitors',
+                type: 'map',
+                map: 'china',
+                roam: true,
+                label: { show: false },
+                emphasis: { label: { show: true } },
+                itemStyle: { borderColor: '#ffffff', borderWidth: 0.5 },
+                data: chinaData
+            }]
+        });
+
+        setText('visitorMapStatus', 'Updated');
+        window.addEventListener('resize', () => {
+            worldChart.resize();
+            chinaChart.resize();
+        });
+    } catch (error) {
+        setText('visitorMapStatus', 'Map data unavailable');
+        console.warn('Visitor map render failed:', error);
+    }
+}
+
+async function initVisitorStats() {
+    if (!document.getElementById('visitors')) {
+        return;
+    }
+
+    try {
+        const stats = isVisitorWorkerConfigured()
+            ? await fetchWorkerVisitorStats()
+            : await getLocalVisitorPreview();
+
+        const visitor = stats.visitor || {};
+        const locationText = [
+            visitor.city,
+            visitor.provinceName || visitor.region,
+            visitor.countryName
+        ].filter(Boolean).join(', ');
+
+        setText('visitorIp', visitor.ip || 'Unknown IP');
+        setText('visitorLocation', locationText || 'Unknown location');
+        setText('totalVisits', formatNumber(stats.totalVisits));
+        setText('uniqueVisitors', formatNumber(stats.uniqueVisitors));
+        setText('visitorMapStatus', isVisitorWorkerConfigured() ? 'Updated' : 'Local preview only');
+        renderVisitorMaps(stats.regions || []);
+    } catch (error) {
+        setText('visitorIp', 'Unavailable');
+        setText('visitorLocation', 'Visitor lookup failed');
+        setText('visitorMapStatus', 'Stats unavailable');
+        setText('totalVisits', '--');
+        setText('uniqueVisitors', '--');
+        console.warn('Visitor stats failed:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initVisitorStats);

@@ -46,13 +46,19 @@ body {
     background: var(--bg-secondary) !important;
 }
 
+.visitors {
+    background: var(--bg-primary) !important;
+}
+
 /* 卡片背景使用CSS变量 */
 .stat-item,
 .research-card,
 .publication-item,
 .award-item,
 .service-item,
-.news-content {
+.news-content,
+.visitor-card,
+.visitor-map-panel {
     background: var(--card-bg) !important;
     box-shadow: 0 4px 6px var(--card-shadow) !important;
 }
@@ -68,7 +74,8 @@ body {
 .award-content h4,
 .service-content h4,
 .news-content h3,
-.contact-item h3 {
+.contact-item h3,
+.visitor-panel-header h3 {
     color: var(--text-primary) !important;
 }
 
@@ -79,8 +86,24 @@ body {
 .award-content p,
 .service-content p,
 .news-content p,
-.contact-item p {
+.contact-item p,
+.visitor-label,
+.visitor-panel-header span,
+.visitor-ip-card small {
     color: var(--text-secondary) !important;
+}
+
+.visitor-card {
+    border-color: var(--border-color) !important;
+}
+
+.visitor-card strong {
+    color: var(--text-primary) !important;
+}
+
+.visitor-card-primary strong,
+.visitor-card-primary .visitor-label {
+    color: white !important;
 }
 
 /* 强调色使用CSS变量 */

@@ -1,0 +1,11 @@
+name = "syuan8889-visitor-stats"
+main = "workers/visitor-stats.js"
+compatibility_date = "2026-07-17"
+
+[vars]
+ALLOWED_ORIGIN = "https://syuan8889.github.io"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "syuan8889_visitor_stats"
+database_id = "80e924cb-9217-47c3-89cf-66cbe4201063"

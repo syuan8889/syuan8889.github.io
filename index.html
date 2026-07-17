@@ -35,6 +35,9 @@
                 <li class="nav-item">
                     <a href="#awards_services" class="nav-link">Awards & Services</a>
                 </li>
+                <li class="nav-item">
+                    <a href="#visitors" class="nav-link">Visitors</a>
+                </li>
                
                 <li class="nav-item">
                     <a href="#contact" class="nav-link">Contact Me</a>
@@ -463,6 +466,46 @@
     <!-- </section> 
 
     <!-- 联系我部分 -->
+    <section id="visitors" class="visitors">
+        <div class="container">
+            <h2 class="section-title">Visitor Map</h2>
+            <div class="visitor-dashboard">
+                <div class="visitor-summary">
+                    <div class="visitor-card visitor-card-primary">
+                        <span class="visitor-label">Total Visits</span>
+                        <strong id="totalVisits">--</strong>
+                    </div>
+                    <div class="visitor-card">
+                        <span class="visitor-label">Unique Visitors</span>
+                        <strong id="uniqueVisitors">--</strong>
+                    </div>
+                    <div class="visitor-card visitor-ip-card">
+                        <span class="visitor-label">Your IP</span>
+                        <strong id="visitorIp">Detecting...</strong>
+                        <small id="visitorLocation">Locating visitor region</small>
+                    </div>
+                </div>
+
+                <div class="visitor-map-layout">
+                    <div class="visitor-map-panel">
+                        <div class="visitor-panel-header">
+                            <h3>Global Visitor Distribution</h3>
+                            <span id="visitorMapStatus">Loading map</span>
+                        </div>
+                        <div id="worldVisitorMap" class="visitor-map"></div>
+                    </div>
+                    <div class="visitor-map-panel china-panel">
+                        <div class="visitor-panel-header">
+                            <h3>China Province View</h3>
+                            <span>Province-level</span>
+                        </div>
+                        <div id="chinaVisitorMap" class="visitor-map china-map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Contact Me</h2>
@@ -524,6 +567,9 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/map/js/world.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/map/js/china.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
